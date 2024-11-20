@@ -5,64 +5,15 @@ const port = 3000;
 // Abilito assets statici
 app.use(express.static("public"));
 
-// Importo il router
+// Importo i router
 const postsRouter = require("./router/posts");
-// Imposto l'uso delle rotte contenute nel router
+const pagesRouter = require("./router/pages");
+
+// Imposto l'uso delle rotte contenute nei router
+app.use("/", pagesRouter);
 app.use("/posts", postsRouter);
-
-// // Pagina: Home
-// app.get("/", (req, res) => {
-//     res.type("html").send("Server del mio blog");
-// });
-
-// // Pagina: Bacheca
-// app.get("/bacheca", (req, res) => {
-//     res.type("json").send({
-//         totalePost: posts.length,
-//         listaPost: posts,
-//     });
-// });
 
 // Avvio
 app.listen(port, () => {
     console.log(`App Express listening on port ${port}`);
 });
-
-// Dichiarazione dei post
-let posts = [
-    // Post 1
-    {
-        titolo: "Ciambellone",
-        contenuto: "",
-        immagine: "./images/ciambellone.jpeg",
-        tag: ["ciambella", "zucchero a velo", "dolce"],
-    },
-    // Post 2
-    {
-        titolo: "Cracker di barbabietola",
-        contenuto: "",
-        immagine: "./images/cracker_barbabietola.jpeg",
-        tag: ["cracker", "barbabietola"],
-    },
-    // Post 3
-    {
-        titolo: "Pane fritto dolce",
-        contenuto: "",
-        immagine: "./images/pane_fritto_dolce.jpeg",
-        tag: ["pane", "fritto", "dolce"],
-    },
-    // Post 4
-    {
-        titolo: "Pasta di barbabietola",
-        contenuto: "",
-        immagine: "./images/pasta_barbabietola.jpeg",
-        tag: ["pasta", "barbabietola"],
-    },
-    // Post 5
-    {
-        titolo: "Torta paesana",
-        contenuto: "",
-        immagine: "./images/torta_paesana.jpeg",
-        tag: ["torta", "dolce"],
-    },
-];
